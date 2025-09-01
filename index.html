@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuta Sato | Data Engineer & DX Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0066ff;
+            --secondary: #00d4ff;
+            --dark: #0a0e27;
+            --dark-light: #151932;
+            --gray: #8892b0;
+            --white: #e6f1ff;
+            --card-bg: rgba(21, 25, 50, 0.7);
+            --border: rgba(136, 146, 176, 0.1);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #151932 100%);
+            color: var(--gray);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* ナビゲーション */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9em;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* ヒーローセクション */
+        .hero {
+            margin-top: 100px;
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .profile-image-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            background: linear-gradient(135deg, var(--dark-light), var(--dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.9em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 4s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .hero-content h1 {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .hero-description {
+            font-size: 1.1em;
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .highlights {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .highlight {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .highlight-value {
+            font-size: 2em;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .highlight-label {
+            font-size: 0.9em;
+            color: var(--gray);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(0, 102, 255, 0.1);
+        }
+        
+        /* セクションタイトル */
+        .section-title {
+            font-size: 2em;
+            color: var(--white);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        
+        .section-subtitle {
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+        
+        /* プロジェクトカード */
+        .projects {
+            margin: 80px 0;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 102, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.3em;
+            color: var(--white);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-tag {
+            padding: 4px 12px;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: var(--primary);
+        }
+        
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metric-value {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .metric-label {
+            font-size: 0.85em;
+            color: var(--gray);
+        }
+        
+        /* スキルセクション */
+        .skills {
+            margin: 80px 0;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+        
+        .skill-category-title {
+            color: var(--white);
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .skill-name {
+            color: var(--gray);
+            font-size: 0.95em;
+        }
+        
+        .skill-level {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+        
+        .skill-dot.active {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        /* 実績セクション */
+        .achievements {
+            margin: 80px 0;
+        }
+        
+        .achievement-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .achievement-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .achievement-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .achievement-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .achievement-description {
+            color: var(--gray);
+            font-size: 0.95em;
+        }
+        
+        /* コンタクトセクション */
+        .contact {
+            margin: 80px 0;
+            text-align: center;
+            padding: 60px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+        
+        .contact h2 {
+            font-size: 2em;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        
+        .contact-description {
+            color: var(--gray);
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .profile-section {
+                margin: 0 auto;
+            }
+            
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .highlights {
+                justify-content: center;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        /* アニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-delay-1 { animation-delay: 0.1s; }
+        .fade-in-delay-2 { animation-delay: 0.2s; }
+        .fade-in-delay-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav>
+        <div class="nav-content">
+            <div class="nav-logo">Yuta Sato</div>
+            <div class="nav-links">
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- ヒーローセクション -->
+        <section class="hero">
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <div class="profile-image">
+                        <span>Profile Image</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="fade-in">佐藤 優太</h1>
+                <p class="subtitle fade-in fade-in-delay-1">Data Engineer & DX Specialist</p>
+                <p class="hero-description fade-in fade-in-delay-2">
+                    1995年静岡県生まれ。横浜国立大学理工学部数物電子情報系学科卒業。<br>
+                    大手通信企業コミュニケーション本部にて、マーケティング領域のデータ活用とDX推進に従事。<br>
+                    在学中は数理科学を専攻しながら、データ分析への興味を深める。<br>
+                    入社後はテレビCMの効果測定・分析を担当し、BIツールによるダッシュボード構築を通じて<br>
+                    データドリブンな意思決定基盤を確立。現在はAI技術と自動化を駆使したDX推進をリード。<br>
+                    ChatGPT APIを活用したSNS分析システムや災害情報BCPシステムなど、<br>
+                    企画から実装まで一貫して手がけ、業務効率99%削減を実現。<br>
+                    「企画×技術」の架け橋として、ビジネス課題を技術で解決することがミッション。
+                </p>
+                
+                <div class="highlights fade-in fade-in-delay-3">
+                    <div class="highlight">
+                        <span class="highlight-value">99%</span>
+                        <span class="highlight-label">業務時間削減</span>
+                    </div>
+                    <div class="highlight">
+                        <span class="highlight-value">20+</span>
+                        <span class="highlight-label">開発システム数</span>
+                    </div>
+                    <div class="highlight">
+                        <span class="highlight-value">5年</span>
+                        <span class="highlight-label">実務経験</span>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons fade-in fade-in-delay-3">
+                    <a href="#contact" class="btn btn-primary">
+                        副業のご相談
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="btn btn-outline">
+                        職務経歴書 (PDF)
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- プロジェクトセクション -->
+        <section id="projects" class="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">実際に開発・運用している主要システム</p>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <h3 class="project-title">SNS反響分析自動化システム</h3>
+                    <p class="project-description">
+                        ChatGPT APIを活用し、SNS分析からレポート生成まで完全自動化。
+                        経営層への定期報告を支援する基幹システム。
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">GPT-4o</span>
+                        <span class="tech-tag">Tkinter</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div class="metric-item">
+                            <span class="metric-value">6h → 4分</span>
+                            <span class="metric-label">処理時間</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">年120h+</span>
+                            <span class="metric-label">工数削減</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">🚨</div>
+                    <h3 class="project-title">災害情報BCPシステム</h3>
+                    <p class="project-description">
+                        気象庁XMLを直接解析し、リアルタイムで広告停止判断を支援。
+                        有償サービスを使わずGASで完全自動化を実現。
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Google Apps Script</span>
+                        <span class="tech-tag">XML解析</span>
+                        <span class="tech-tag">Gemini</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div class="metric-item">
+                            <span class="metric-value">¥0</span>
+                            <span class="metric-label">運用コスト</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">24/7</span>
+                            <span class="metric-label">自動監視</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">🔧</div>
+                    <h3 class="project-title">Chrome拡張機能開発</h3>
+                    <p class="project-description">
+                        GPTs（カスタムGPT）の考案から実装までを自動化する拡張機能。
+                        組織全体のAI活用を加速させる革新的ツール。
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Chrome Extension</span>
+                        <span class="tech-tag">GPT API</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div class="metric-item">
+                            <span class="metric-value">80%</span>
+                            <span class="metric-label">作成時間削減</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">全社展開</span>
+                            <span class="metric-label">利用範囲</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">📊</div>
+                    <h3 class="project-title">マーケティングBIダッシュボード</h3>
+                    <p class="project-description">
+                        TV CM効果測定、デジタル施策分析を一元化。
+                        役員層向けの自動レポート配信機能も実装。
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">DOMO</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Looker Studio</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div class="metric-item">
+                            <span class="metric-value">20+</span>
+                            <span class="metric-label">ダッシュボード数</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">日次更新</span>
+                            <span class="metric-label">データ鮮度</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">📱</div>
+                    <h3 class="project-title">LINE公式アカウント最適化</h3>
+                    <p class="project-description">
+                        SQLを活用したデータドリブンなキャンペーン設計。
+                        効果測定と改善のPDCAサイクルを確立。
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">データ分析</span>
+                        <span class="tech-tag">DOMO</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div class="metric-item">
+                            <span class="metric-value">目標達成</span>
+                            <span class="metric-label">友だち数</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">継続改善</span>
+                            <span class="metric-label">エンゲージメント</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">🔍</div>
+                    <h3 class="project-title">記事自動パトロールシステム</h3>
+                    <p class="project-description">
+                        Webスクレイピングとテキストベクトル化により、
+                        不適切コンテンツを自動検知・アラート。
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scraping</span>
+                        <span class="tech-tag">NLP</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div class="metric-item">
+                            <span class="metric-value">自動化</span>
+                            <span class="metric-label">監視体制</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">高精度</span>
+                            <span class="metric-label">検知率</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- スキルセクション -->
+        <section id="skills" class="skills">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">実務で活用している技術スタック</p>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3 class="skill-category-title">
+                        <span>💻</span>
+                        Programming
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Google Apps Script</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SQL</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="skill-category-title">
+                        <span>🤖</span>
+                        AI & Automation
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">ChatGPT</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Claude Code</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Gemini</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">API Integration</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="skill-category-title">
+                        <span>📊</span>
+                        Data & Analytics
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">DOMO</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Looker Studio</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Quid Monitor</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ソーシャルリスニング</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="skill-category-title">
+                        <span>🛠️</span>
+                        Tools & Platforms
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Google Workspace</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Wrike</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">GitHub</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">BOX</span>
+                            <div class="skill-level">
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot active"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 実績セクション -->
+        <section id="achievements" class="achievements">
+            <h2 class="section-title">Key Achievements</h2>
+            <p class="section-subtitle">数値で見る具体的な成果</p>
+            
+            <div class="achievement-cards">
+                <div class="achievement-card">
+                    <div class="achievement-icon">⚡</div>
+                    <div class="achievement-title">99%</div>
+                    <div class="achievement-description">
+                        SNS分析時間の削減<br>
+                        6時間 → 4分を実現
+                    </div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">💰</div>
+                    <div class="achievement-title">年120h+</div>
+                    <div class="achievement-description">
+                        工数削減による<br>
+                        コスト効率化
+                    </div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">📈</div>
+                    <div class="achievement-title">300%</div>
+                    <div class="achievement-description">
+                        システムパフォーマンス<br>
+                        向上率
+                    </div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎯</div>
+                    <div class="achievement-title">20+</div>
+                    <div class="achievement-description">
+                        経営層向け<br>
+                        レポート年間作成数
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- コンタクトセクション -->
+        <section id="contact" class="contact">
+            <h2>Get In Touch</h2>
+            <p class="contact-description">
+                データ分析、DX推進、業務自動化、生成AI活用など<br>
+                副業・業務委託のご相談をお待ちしております
+            </p>
+            
+            <div class="cta-buttons" style="justify-content: center; margin-top: 30px;">
+                <a href="mailto:your-email@example.com" class="btn btn-primary">
+                    お問い合わせ
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span>東京都</span>
+                </div>
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                        <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                    </svg>
+                    <span>リモート対応可</span>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // 要素を監視
+        document.querySelectorAll('.project-card, .skill-category, .achievement-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+        
+        // タイピングエフェクト（オプション）
+        const typeWriter = (element, text, speed = 50) => {
+            let i = 0;
+            element.textContent = '';
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        };
+        
+        // ページロード時のアニメーション
+        window.addEventListener('load', () => {
+            const title = document.querySelector('.hero h1');
+            if (title) {
+                const originalText = title.textContent;
+                typeWriter(title, originalText, 100);
+            }
+        });
+    </script>
+</body>
+</html>
