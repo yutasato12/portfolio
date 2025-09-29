@@ -493,6 +493,164 @@
             font-size: 0.95em;
         }
         
+        /* サイドプロジェクトセクション */
+        .side-projects {
+            margin: 80px 0;
+        }
+        
+        .side-project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .side-project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .side-project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+        }
+        
+        .project-image-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--dark-light), var(--dark));
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .side-project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 39, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .side-project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .view-project-btn {
+            padding: 12px 24px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .view-project-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .view-demo-btn, .view-code-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .view-demo-btn:hover, .view-code-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .side-project-content {
+            padding: 30px;
+        }
+        
+        .side-project-title {
+            font-size: 1.4em;
+            color: var(--white);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .side-project-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .side-project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .side-project-metrics {
+            display: flex;
+            gap: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .side-project-metrics .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            font-size: 0.9em;
+        }
+        
+        .metric-icon {
+            font-size: 1.2em;
+        }
+        
+        .project-showcase-note {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0, 102, 255, 0.05);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 8px;
+            color: var(--gray);
+            font-size: 0.95em;
+        }
+        
         /* コンタクトセクション */
         .contact {
             margin: 80px 0;
@@ -556,6 +714,10 @@
                 grid-template-columns: 1fr;
             }
             
+            .side-project-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .nav-links {
                 display: none;
             }
@@ -588,6 +750,7 @@
             <div class="nav-links">
                 <a href="#projects">Projects</a>
                 <a href="#skills">Skills</a>
+                <a href="#side-projects">Side Projects</a>
                 <a href="#achievements">Achievements</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -1060,6 +1223,102 @@
             </div>
         </section>
         
+        <!-- サイドプロジェクトセクション -->
+        <section id="side-projects" class="side-projects">
+            <h2 class="section-title">Side Projects</h2>
+            <p class="section-subtitle">個人開発・副業プロジェクト</p>
+            
+            <div class="side-project-grid">
+                <div class="side-project-card">
+                    <div class="project-image-container">
+                        <img src="affiliate-site-screenshot.jpg" alt="免許合宿アフィリエイトサイト" class="project-image">
+                        <div class="project-overlay">
+                            <a href="https://deme-blog.com" target="_blank" class="view-project-btn">
+                                サイトを見る
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="side-project-content">
+                        <h3 class="side-project-title">免許合宿アフィリエイトサイト</h3>
+                        <p class="side-project-description">
+                            免許合宿の比較・紹介サイトをWordPressで構築。
+                            SEO対策とコンテンツマーケティングにより、安定した収益化を実現。
+                        </p>
+                        <div class="side-project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">SEO</span>
+                            <span class="tech-tag">Google Analytics</span>
+                            <span class="tech-tag">Search Console</span>
+                            <span class="tech-tag">Webライティング</span>
+                        </div>
+                        <div class="side-project-metrics">
+                            <div class="metric-item">
+                                <span class="metric-icon">🌐</span>
+                                <span class="metric-text">運用中</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-icon">📊</span>
+                                <span class="metric-text">データ分析実装</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="side-project-card">
+                    <div class="project-image-container">
+                        <img src="kabuscope-screenshot.jpg" alt="KabuScope - 株式スクリーニングツール" class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://kabuscope.streamlit.app/" target="_blank" class="view-demo-btn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                                    </svg>
+                                    Live App
+                                </a>
+                                <a href="https://github.com/yourusername/kabuscope" target="_blank" class="view-code-btn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                    Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-project-content">
+                        <h3 class="side-project-title">KabuScope - 株式スクリーニングツール</h3>
+                        <p class="side-project-description">
+                            リアルタイムで株価データを収集・分析し、独自の投資指標に基づいて
+                            銘柄をスクリーニングする自動化ツール。Streamlitで実装。
+                        </p>
+                        <div class="side-project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">pandas</span>
+                            <span class="tech-tag">yfinance</span>
+                            <span class="tech-tag">データ分析</span>
+                        </div>
+                        <div class="side-project-metrics">
+                            <div class="metric-item">
+                                <span class="metric-icon">📈</span>
+                                <span class="metric-text">リアルタイム分析</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-icon">🚀</span>
+                                <span class="metric-text">Webアプリ公開中</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-showcase-note">
+                <p>※ 各プロジェクトをクリックして実際のサイト・アプリケーションをご覧いただけます</p>
+            </div>
+        </section>
+        
         <!-- コンタクトセクション -->
         <section id="contact" class="contact">
             <h2>Get In Touch</h2>
@@ -1128,7 +1387,7 @@
         }, observerOptions);
         
         // 要素を監視
-        document.querySelectorAll('.project-card, .skill-category, .achievement-card').forEach(el => {
+        document.querySelectorAll('.project-card, .skill-category, .achievement-card, .side-project-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s ease-out';
