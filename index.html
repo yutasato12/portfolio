@@ -115,6 +115,16 @@
             position: relative;
             overflow: hidden;
         }
+
+        .profile-image-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
         
         .profile-image::before {
             content: '';
@@ -762,9 +772,7 @@
         <section class="hero">
             <div class="profile-section">
                 <div class="profile-image-container">
-                    <div class="profile-image">
-                        <span>Profile Image</span>
-                    </div>
+                    <img src="profile.PNG" alt="佐藤優太" class="profile-image-img">
                 </div>
                 <div class="social-links">
                     <a href="#" class="social-link">
